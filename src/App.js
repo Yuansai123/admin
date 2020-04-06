@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{Component} from 'react';
+import {HashRouter,Route} from 'react-router-dom'
+// import Son from './test/index'
+import EchartsPie from './pages/Echarts/Pie'
+import EchartsBar from './pages/Echarts/Bar'
+import EchartsLine from './pages/Echarts/Line'
+import Login from './pages/Login/index'
+import Admin from './pages/admin'
+import Administartor from './pages/Administartor'
+import User from './pages/User'
+import Home from './pages/Home/home'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+  render(){
+    return (
+      <HashRouter>
+        <Route path='/login' component={Login}></Route>
+        <Route path='/admin' render={()=>{
+          return(
+            <Admin>
+              <Route path='/admin/home' component={Home}></Route>
+              <Route path='/admin/user' component={User}></Route>
+              <Route path='/admin/echarts/pie' component={EchartsPie}></Route>
+              <Route path='/admin/echarts/bar' component={EchartsBar}></Route>
+              <Route path='/admin/echarts/line' component={EchartsLine}></Route>
+              <Route path='/admin/administartor' component={Administartor}></Route>
+            </Admin>
+          )
+        }}></Route>
+        
+      </HashRouter>
+    )
+  }
 }
 
 export default App;
